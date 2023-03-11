@@ -1,0 +1,44 @@
+def calculate_diad_frequencies(sequence):
+    diads = ["AA", "AB", "BA", "BB"]
+    diad_counts = {diad: 0 for diad in diads}
+    a_count = 0
+    b_count = 0
+    
+    for i in range(len(sequence) - 1):
+        diad = sequence[i:i+2]
+        if diad in diad_counts:
+            diad_counts[diad] += 1
+        
+        if sequence[i] == "A":
+            a_count += 1
+        elif sequence[i] == "B":
+            b_count += 1
+    
+    if sequence[-1] == "A":
+        a_count += 1
+    elif sequence[-1] == "B":
+        b_count += 1
+    
+    return diad_counts, a_count, b_count
+
+def calculate_triad_frequencies(sequence):
+    triads = ["AAA", "AAB", "ABA", "ABB", "BAA", "BAB", "BBA", "BBB"]
+    triad_counts = {triad: 0 for triad in triads}
+    
+    for i in range(len(sequence) - 2):
+        triad = sequence[i:i+3]
+        if triad in triad_counts:
+            triad_counts[triad] += 1
+    
+    return triad_counts
+
+sequence = "BBBBAAAABAAAAAABABABABAABABA"
+print("Diad frequencies:")
+diad_counts, a_count, b_count = calculate_diad_frequencies(sequence)
+print(diad_counts)
+print(f"Number of monomer A: {a_count}")
+print(f"Number of monomer B: {b_count}")
+print("Triad frequencies:")
+triad_counts = calculate_triad_frequencies(sequence)
+print(triad_counts)
+
