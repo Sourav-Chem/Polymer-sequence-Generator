@@ -1,0 +1,23 @@
+!pip install --upgrade MDAnalysis
+import MDAnalysis.analysis as analysis
+!pip install --upgrade MDAnalysis
+!pip install MDAnalysis
+import MDAnalysis as mda
+import MDAnalysis as mda
+
+# Load the polymer structure
+polymer = mda.Universe('polymer-3.pdb')
+
+# Get the residues in the polymer
+residues = polymer.residues
+
+# Extract the sequence from the residues
+sequence = ''
+for residue in residues:
+    if residue.resname == 'A':
+        sequence += 'A'
+    elif residue.resname == 'B':
+        sequence += 'B'
+
+# Print the sequence
+print('Sequence:', sequence)
