@@ -1,0 +1,20 @@
+!pip install --upgrade MDAnalysis
+import MDAnalysis.analysis as analysis
+!pip install --upgrade MDAnalysis
+!pip install MDAnalysis
+import MDAnalysis as mda
+
+# Load the polymer structure
+polymer = mda.Universe('polymer.pdb')
+
+# Select the atoms that correspond to the A and B monomers
+a_atoms = polymer.select_atoms('resname A')
+b_atoms = polymer.select_atoms('resname B')
+
+
+# Calculate the end-to-end distance of the polymer
+end_to_end = mda.analysis.distances.distance_array(a_atoms.positions[0], b_atoms.positions[-1])[0]
+
+
+# Print the results
+print('End-to-End Distance: {} Å'.format(end_to_end))
